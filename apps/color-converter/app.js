@@ -1,6 +1,7 @@
 const hexInput = document.getElementById('hexInput');
 const rgbInput = document.getElementById('rgbInput');
 const hslInput = document.getElementById('hslInput');
+const colorPicker = document.getElementById('colorPicker');
 const mainPreview = document.getElementById('mainPreview');
 const paletteContainer = document.getElementById('paletteContainer');
 
@@ -71,8 +72,15 @@ function updateFromHex(hex) {
     const rgb = hexToRgb(hex);
     const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
 
-    rgbInput.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-    hslInput.value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+    // Update all inputs except the one being typed in (if any)
+    // For simplicity, we update all and rely on browser not to mess up cursor too much
+    // or we can check document.activeElement
+
+    if (document.activeElement !== hexInput) hexInput.value = hex;
+    if (document.activeElement !== rgbInput) rgbInput.value = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+    if (document.activeElement !== hslInput) hslInput.value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+    if (document.activeElement !== colorPicker) colorPicker.value = hex;
+
     mainPreview.style.backgroundColor = hex;
     generatePalette(hsl.h, hsl.s);
 }
@@ -91,6 +99,9 @@ function generatePalette(h, s) {
         swatch.onclick = () => {
             navigator.clipboard.writeText(hex);
             // Visual feedback could be added here
+            const originalTitle = swatch.title;
+            swatch.title = "Copied!";
+            setTimeout(() => swatch.title = originalTitle, 1000);
         };
         paletteContainer.appendChild(swatch);
     }
@@ -102,6 +113,13 @@ hexInput.addEventListener('input', (e) => {
     if (!val.startsWith('#')) val = '#' + val;
     updateFromHex(val);
 });
+
+colorPicker.addEventListener('input', (e) => {
+    updateFromHex(e.target.value);
+});
+
+// Basic parsing for RGB/HSL inputs could be added here
+// For now, we focus on the requested Color Picker fix
 
 // Initial load
 updateFromHex(hexInput.value);
