@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diff Checker - DevTools Hub</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <style>
+        .diff-output {
+            font-family: 'Fira Code', monospace;
+            white-space: pre-wrap;
+            padding: 1rem;
+            overflow-y: auto;
+            height: 100%;
+            color: var(--text-primary);
+        }
+
+        .diff-added {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .diff-removed {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            text-decoration: line-through;
+        }
+
+        .diff-grey {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container tool-container">
+        <div class="tool-header">
+            <a href="../../index.html" class="back-link">&larr; Back to Hub</a>
+            <h2>Diff Checker</h2>
+            <div class="actions">
+                <button id="compareBtn" class="btn">Compare</button>
+                <button id="clearBtn" class="btn btn-secondary">Clear</button>
+            </div>
+        </div>
+
+        <div class="workspace">
+            <div class="pane">
+                <div class="pane-header">Original Text</div>
+                <div class="pane-content">
+                    <textarea id="originalInput" placeholder="Paste original text here..."></textarea>
+                </div>
+            </div>
+            <div class="pane">
+                <div class="pane-header">Modified Text</div>
+                <div class="pane-content">
+                    <textarea id="modifiedInput" placeholder="Paste modified text here..."></textarea>
+                </div>
+            </div>
+            <div class="pane">
+                <div class="pane-header">Differences</div>
+                <div class="pane-content">
+                    <div id="diffOutput" class="diff-output"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load jsdiff from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

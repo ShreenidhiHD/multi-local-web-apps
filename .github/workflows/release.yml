@@ -1,0 +1,29 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on tags like v1.0, v2.0.1, etc.
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.6
+        with:
+          type: 'zip'
+          filename: 'source-code.zip'
+          exclusions: '*.git* /*node_modules/* .github/*'
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: source-code.zip
+          generate_release_notes: true

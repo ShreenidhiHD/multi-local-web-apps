@@ -14,6 +14,16 @@ A real-time HTML editor and previewer.
 - **Features**: Live preview in an isolated iframe, instant feedback.
 - **Location**: `apps/html-viewer/`
 
+### 3. Diff Checker
+Compare two blocks of text to see what changed.
+- **Features**: Side-by-side comparison, color-coded additions and deletions.
+- **Location**: `apps/diff-checker/`
+
+### 4. Color Converter
+Convert colors and generate palettes.
+- **Features**: HEX/RGB/HSL conversion, visual preview, shade/tint generator.
+- **Location**: `apps/color-converter/`
+
 ## Project Structure
 
 ```text
