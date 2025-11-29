@@ -88,22 +88,40 @@ function updateFromHex(hex) {
 // Generate shades and tints
 function generatePalette(h, s) {
     paletteContainer.innerHTML = '';
-    for (let l = 10; l <= 90; l += 10) {
+    for (let l = 10; l <= 95; l += 8) { // More steps for smoother gradient
         const rgb = hslToRgb(h, s, l);
         const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'swatch-wrapper';
 
         const swatch = document.createElement('div');
         swatch.className = 'palette-swatch';
         swatch.style.backgroundColor = hex;
-        swatch.title = hex;
-        swatch.onclick = () => {
+
+        const label = document.createElement('span');
+        label.className = 'swatch-label';
+        label.innerText = hex;
+
+        wrapper.onclick = () => {
             navigator.clipboard.writeText(hex);
-            // Visual feedback could be added here
-            const originalTitle = swatch.title;
-            swatch.title = "Copied!";
-            setTimeout(() => swatch.title = originalTitle, 1000);
+
+            // Visual feedback
+            const originalText = label.innerText;
+            label.innerText = "Copied!";
+            label.style.color = "#4ade80"; // Green
+            swatch.style.transform = "scale(0.95)";
+
+            setTimeout(() => {
+                label.innerText = originalText;
+                label.style.color = "";
+                swatch.style.transform = "";
+            }, 1000);
         };
-        paletteContainer.appendChild(swatch);
+
+        wrapper.appendChild(swatch);
+        wrapper.appendChild(label);
+        paletteContainer.appendChild(wrapper);
     }
 }
 
