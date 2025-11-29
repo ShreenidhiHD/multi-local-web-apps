@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter - DevTools Hub</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container tool-container">
+        <div class="tool-header">
+            <a href="../../index.html" class="back-link">&larr; Back to Hub</a>
+            <h2>JSON Formatter</h2>
+            <div class="actions">
+                <button id="formatBtn" class="btn">Format</button>
+                <button id="minifyBtn" class="btn btn-secondary">Minify</button>
+                <button id="copyBtn" class="btn btn-secondary">Copy</button>
+                <button id="clearBtn" class="btn btn-secondary">Clear</button>
+            </div>
+        </div>
+
+        <div class="workspace">
+            <div class="pane">
+                <div class="pane-header">Input</div>
+                <div class="pane-content">
+                    <textarea id="jsonInput" placeholder="Paste your JSON here..."></textarea>
+                </div>
+            </div>
+            <div class="pane">
+                <div class="pane-header">Output</div>
+                <div class="pane-content">
+                    <textarea id="jsonOutput" readonly placeholder="Formatted JSON will appear here..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
