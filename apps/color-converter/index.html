@@ -11,6 +11,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap"
         rel="stylesheet">
     <style>
+        /* Custom styles for full-screen layout */
+        .tool-container {
+            max-width: none;
+            padding: 1rem 2rem;
+            height: calc(100vh - 4rem);
+        }
+
+        .workspace {
+            display: flex;
+            gap: 1.5rem;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .pane {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .pane-header {
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .pane-content {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
         .color-preview {
             width: 100%;
             height: 150px;
@@ -98,7 +136,7 @@
         <div class="workspace">
             <div class="pane" style="flex: 0 0 350px;">
                 <div class="pane-header">Controls</div>
-                <div class="pane-content" style="padding: 1.5rem;">
+                <div class="pane-content">
                     <div id="mainPreview" class="color-preview" style="background-color: #38bdf8;"></div>
 
                     <div class="input-group">
@@ -122,9 +160,9 @@
                 </div>
             </div>
 
-            <div class="pane">
+            <div class="pane" style="flex: 1;">
                 <div class="pane-header">Palette & Info</div>
-                <div class="pane-content" style="padding: 1.5rem;">
+                <div class="pane-content">
                     <h3>Shades & Tints</h3>
                     <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Click to copy HEX
                         code.</p>
